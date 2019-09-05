@@ -7,6 +7,7 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +24,8 @@ public class DocReceiveDemo {
 
     public static void main(String[] args) {
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl("jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000").setJdbcUsername("sa").setJdbcPassword("")
-                .setJdbcDriver("org.h2.Driver")
+                .setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl").setJdbcUsername("DG").setJdbcPassword("Compass!23$.")
+                .setJdbcDriver("oracle.jdbc.driver.OracleDriver")
                 .setJobExecutorActivate(true)
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
         ProcessEngine processEngine = cfg.buildProcessEngine();
@@ -136,7 +137,49 @@ public class DocReceiveDemo {
             List<Task> taskList8 = taskService.createTaskQuery().taskAssignee(s).orderByTaskCreateTime().desc().list();
             taskService.complete(taskList8.get(0).getId());
         }
+        // 办公室归档
+        List<Task> taskList9 = taskService.createTaskQuery().taskAssignee("createUserId").orderByTaskCreateTime().desc().list();
+        System.out.println("taskList9 = " + taskList9);
+        taskService.complete(taskList9.get(0).getId());
+        // 历史任务查询
+        List<HistoricActivityInstance> historicActivityInstances = processEngine.getHistoryService()
+                .createHistoricActivityInstanceQuery()
+                .orderByHistoricActivityInstanceStartTime()
+                .asc()
+                .list();
+        for (HistoricActivityInstance historicActivityInstance : historicActivityInstances) {
+            System.out.println("任务ID:" + historicActivityInstance.getId());
+            System.out.println("流程实例ID:" + historicActivityInstance.getProcessInstanceId());
+            System.out.println("活动名称：" + historicActivityInstance.getActivityName());
+            System.out.println("办理人：" + historicActivityInstance.getAssignee());
+            System.out.println("开始时间：" + historicActivityInstance.getStartTime());
+            System.out.println("结束时间：" + historicActivityInstance.getEndTime());
+            System.out.println("===========================");
+        }
+    }
 
+    @Test
+    public void test1() {
+        ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
+                .setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl").setJdbcUsername("DG").setJdbcPassword("Compass!23$.")
+                .setJdbcDriver("oracle.jdbc.driver.OracleDriver")
+                .setJobExecutorActivate(true)
+                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+        ProcessEngine processEngine = cfg.buildProcessEngine();
+        TaskService taskService = processEngine.getTaskService();
+        List<Task> taskList9 = taskService.createTaskQuery().taskAssignee("createUserId").orderByTaskCreateTime().desc().list();
+        System.out.println("taskList9 = " + taskList9);
+        taskService.complete(taskList9.get(0).getId());
+    }
+
+    @Test
+    public void test2() {
+        ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
+                .setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl").setJdbcUsername("DG").setJdbcPassword("Compass!23$.")
+                .setJdbcDriver("oracle.jdbc.driver.OracleDriver")
+                .setJobExecutorActivate(true)
+                .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
+        ProcessEngine processEngine = cfg.buildProcessEngine();
         // 历史任务查询
         List<HistoricActivityInstance> historicActivityInstances = processEngine.getHistoryService()
                 .createHistoricActivityInstanceQuery()
