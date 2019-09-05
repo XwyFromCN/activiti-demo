@@ -82,12 +82,12 @@ public class Parallel1 {
 
     @Test
     public void completeOne(){
-//        List<Task> taskList = taskService().createTaskQuery()
-//                .taskAssignee("xwy").orderByTaskCreateTime().desc().list();
+        List<Task> taskList = taskService().createTaskQuery()
+                .taskAssignee("xwy").orderByTaskCreateTime().desc().list();
 //        List<Task> taskList = taskService().createTaskQuery()
 //                .taskAssignee("yh").orderByTaskCreateTime().desc().list();
-        List<Task> taskList = taskService().createTaskQuery()
-                .taskAssignee("pp").orderByTaskCreateTime().desc().list();
+//        List<Task> taskList = taskService().createTaskQuery()
+//                .taskAssignee("pp").orderByTaskCreateTime().desc().list();
         System.out.println("taskList = " + taskList);
         //指定多实例节点的处理对象
         taskService().complete(taskList.get(0).getId());

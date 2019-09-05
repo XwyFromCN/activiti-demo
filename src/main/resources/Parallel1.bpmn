@@ -6,7 +6,7 @@
     <sequenceFlow id="_4" sourceRef="_2" targetRef="_3"/>
     <userTask activiti:assignee="${user}" activiti:exclusive="true" id="_17" name="UserTask">
       <multiInstanceLoopCharacteristics activiti:collection="userList" activiti:elementVariable="user" isSequential="false">
-        <completionCondition><![CDATA[${nrOfCompletedInstances/nrOfInstances ==1 }]]></completionCondition>
+        <completionCondition><![CDATA[${nrOfCompletedInstances/nrOfInstances >1/2 }]]></completionCondition>
       </multiInstanceLoopCharacteristics>
     </userTask>
     <sequenceFlow id="_18" sourceRef="_3" targetRef="_17"/>
@@ -39,16 +39,16 @@
           <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_18" id="BPMNEdge__18" sourceElement="_3" targetElement="_17">
-        <omgdi:waypoint x="495.0" y="250.0"/>
-        <omgdi:waypoint x="495.0" y="335.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_4" id="BPMNEdge__4" sourceElement="_2" targetElement="_3">
+        <omgdi:waypoint x="491.0" y="122.0"/>
+        <omgdi:waypoint x="491.0" y="195.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_4" id="BPMNEdge__4" sourceElement="_2" targetElement="_3">
-        <omgdi:waypoint x="491.0" y="122.0"/>
-        <omgdi:waypoint x="491.0" y="195.0"/>
+      <bpmndi:BPMNEdge bpmnElement="_18" id="BPMNEdge__18" sourceElement="_3" targetElement="_17">
+        <omgdi:waypoint x="495.0" y="250.0"/>
+        <omgdi:waypoint x="495.0" y="335.0"/>
         <bpmndi:BPMNLabel>
           <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
         </bpmndi:BPMNLabel>
