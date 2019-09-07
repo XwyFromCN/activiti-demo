@@ -12,7 +12,7 @@ public class ProcessUtills {
     //创建流程引擎
     public static ProcessEngine newEngine(){
         ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-                .setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl").setJdbcUsername("DG").setJdbcPassword("Compass!23$.")
+                .setJdbcUrl("jdbc:oracle:thin:@127.0.0.1:1521:orcl").setJdbcUsername("xx").setJdbcPassword("xxx")
                 .setJdbcDriver("oracle.jdbc.driver.OracleDriver")
                 .setJobExecutorActivate(true)
                 .setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
