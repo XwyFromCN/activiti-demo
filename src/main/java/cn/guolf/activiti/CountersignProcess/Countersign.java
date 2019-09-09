@@ -17,6 +17,7 @@ import java.util.Map;
  * @Auther: xwy
  * @Date: 2019/9/5 18:28
  * @Description: 会签：多人会签，当超过1/2的人通过则通过流程,不超过则回退
+ * 使用网关监听
  */
 public class Countersign {
     @Test

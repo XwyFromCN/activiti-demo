@@ -54,10 +54,16 @@ public class LeaveCoutersignTest extends AbstractActivitiTestCase {
         variables.put("users", users);
         identityService.setAuthenticatedUserId("henryyan");
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave-countersign", variables);
+        boolean flag = true;
         for (String user : users) {
             Task task = taskService.createTaskQuery().processInstanceId(processInstance.getId()).taskAssignee(user).singleResult();
             Map<String, Object> taskVariables = new HashMap<String, Object>();
-            taskVariables.put("approved", "false");
+            if(flag){
+                taskVariables.put("approved", "false");
+                flag = false;
+            } else{
+                taskVariables.put("approved", "true");
+            }
             taskService.complete(task.getId(), taskVariables);
         }
 
@@ -73,7 +79,7 @@ public class LeaveCoutersignTest extends AbstractActivitiTestCase {
         for (String user : users) {
             Task t = taskService.createTaskQuery().processInstanceId(processInstance.getId()).taskAssignee(user).singleResult();
             Map<String, Object> taskVar = new HashMap<String, Object>();
-            taskVariables.put("approved", "false");
+            taskVar.put("approved", "false");
             taskService.complete(t.getId(), taskVar);
         }
         Task t = taskService.createTaskQuery().taskAssignee("henryyan").singleResult();
