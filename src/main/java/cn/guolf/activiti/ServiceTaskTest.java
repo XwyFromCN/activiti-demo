@@ -14,7 +14,7 @@ import org.junit.Test;
  * @Date: 2019/9/9 21:00
  * @Description:
  */
-public class ServiceTask extends AbstractActivitiTestCase {
+public class ServiceTaskTest extends AbstractActivitiTestCase {
 
     @Test
     @Deployment(resources = "ServiceTask.bpmn")
