@@ -1,4 +1,4 @@
-package cn.guolf.activiti;
+package cn.guolf.activiti.ServiceProcess;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngineConfiguration;
